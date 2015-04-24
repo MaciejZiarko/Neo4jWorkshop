@@ -9,8 +9,8 @@ interface ArticleRepository extends GraphRepository<Article> {
     @Query('MATCH (a:Article) WHERE a.publishDate = {0} RETURN a')
     List<Article> getArticlesPublishedOnDay(String isoDate)
 
-    @Query('''MATCH (a:Article)-[:CONTAINS]->(ne:NamedEntity)
-              WHERE ne.name = {0} AND (NOT (a:Article)-[:CONTAINS]->(:NamedEntity {name : {1}}))
+    @Query('''MATCH (a:Article)-[:CONTAINS]->(ne:NamedEntity {name : {0}})
+              WHERE NOT (a:Article)-[:CONTAINS]->(:NamedEntity {name : {1}})
               RETURN a''')
     List<Article> getArticlesThatMentionedFirstButNotMentionSecondNamedEntity(String firstNamedEntity, String secondNamedEntity)
 }
