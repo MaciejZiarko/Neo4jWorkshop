@@ -1,0 +1,4 @@
+*.iml
+.gradle
+.idea
+neo4j.db
