@@ -6,9 +6,7 @@ import ziarko.neo4j.domain.model.RssFeed
 
 interface RssFeedRepository extends GraphRepository<RssFeed> {
 
-    @Query('''MATCH (feed:RssFeed)<-[:PUBLISHED_IN]-(a:Article)-[:CONTAINS]->(ne:NamedEntity)
-              WHERE ne.name = {0}
-              RETURN count(DISTINCT feed)''')
+    @Query('''''')
     int countRssFeedsThatMentionedNamedEntity(String namedEntity)
 
 }

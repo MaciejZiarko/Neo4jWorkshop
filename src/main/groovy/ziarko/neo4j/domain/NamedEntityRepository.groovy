@@ -7,10 +7,7 @@ import ziarko.neo4j.domain.model.NamedEntityRankingPosition
 
 interface NamedEntityRepository extends GraphRepository<NamedEntity> {
 
-    @Query(value = '''MATCH (a:Article)-[:CONTAINS]->(namedEntity:NamedEntity)
-                      WHERE a.publishDate = {0}
-                      RETURN namedEntity, count(a) as count
-                      ORDER BY count DESC, namedEntity.name ASC''')
+    @Query(value = '''''')
     List<NamedEntityRankingPosition> getMostPopularNamedEntitiesForDay(String isoPublishDay)
 
 

@@ -6,11 +6,9 @@ import ziarko.neo4j.domain.model.Article
 
 interface ArticleRepository extends GraphRepository<Article> {
 
-    @Query('MATCH (a:Article) WHERE a.publishDate = {0} RETURN a')
+    @Query('')
     List<Article> getArticlesPublishedOnDay(String isoDate)
 
-    @Query('''MATCH (a:Article)-[:CONTAINS]->(ne:NamedEntity {name : {0}})
-              WHERE NOT (a:Article)-[:CONTAINS]->(:NamedEntity {name : {1}})
-              RETURN a''')
+    @Query('''''')
     List<Article> getArticlesThatMentionedFirstButNotMentionSecondNamedEntity(String firstNamedEntity, String secondNamedEntity)
 }
